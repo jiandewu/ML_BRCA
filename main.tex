@@ -36,7 +36,7 @@
 
 % ------------------------------------------------------------------------------------------------
 
-\begin{frame}[plain,noframenumbering]
+\begin{frame}%[plain,noframenumbering]
   \addtocounter{framenumber}{-1}
 %  \footnotesize
 %   \thispagestyle{empty}
@@ -53,9 +53,11 @@
  \begin{itemize}
      \item A common issue in medicine is to distinguish accurately between similar diseases in order to make an accurate diagnosis of a patient. 
      \item Molecular-level classification using gene expression profile has already proven useful for this task.
-     \item This technique has been used in two tasks: class discovery and class prediction. 
+     \item This tehnique has been used in two tasks: class discovery and class prediction. 
+     \begin{itemize}
      \item Class discovery is the task of identifying new classes of cancer.
      \item Class prediction is the task of assigning a new tumor to a known class.
+     \end{itemize}
  \end{itemize}
 \end{frame}
 
@@ -65,7 +67,7 @@
     \item Breast cancer is the most diagnosed cancer among women in the US and the second leading cause of cancer-related in women.
     \item Breast cancer is a heterogeneous disease defined by molecular types. 
     \item Accurate prediction of type can aid in effectively directing patient therapy. 
-    \item In this study, k-Nearest Neighbours (kNNs), Naive Gaussian Bayes (NGB), Random Tree (RT) and Support Vector Machines (SVM) approach are proposed to identify two types of breast cancer (tripe negative and ER positive).
+    \item In this study, k-Nearest Neighbours (kNNs), Naive Gaussian Bayes (NGB), Random Tree (RT) and Support Vector Machines (SVM) are proposed to identify two types of breast cancer (Triple Negative and ER positive).
   \end{itemize}
 \end{frame}
 
@@ -77,15 +79,15 @@
 \begin{exampleblock}{Given: A set of gene expression data}
 \begin{itemize}\footnotesize{
     \item The samples have a group of closely related diseases. 
-    \item Each sample's numeric expression levels constitute the features of an sample. 
+    \item Each sample gene's numeric expression levels constitute the features of an sample. 
     \item The corresponding disease classification for each sample is that sample's category. }
 \end{itemize}
 \end{exampleblock}
 
 \begin{exampleblock}{Do: Learn a model that can accurately classify a new sample into its appropriate disease classification}
 \begin{itemize}\footnotesize{
-    \item We can use any of the many supervised-learning techniques to induce a diagnosis model from the gene-expression data of a number of samples and the associated disease. 
-    \item Once an accurate predictive model is obtained, new samples --- and those who were previously undiagnosable --- can be classified. }
+    \item We can use any of the supervised learning techniques to induce a diagnosis model from the gene expression data and the associated disease. 
+    \item Once an accurate predictive model is obtained, new samples or those who were previously undiagnosable can be classified. }
 \end{itemize}
 \end{exampleblock}
 \end{frame}
@@ -94,16 +96,21 @@
   \begin{itemize}
       \item We compare the classification performance of a number of important and widely used machine learning algorithms.
       \item  k-Nearest Neighbours (kNNs), Naive Gaussian Bayes (NGB), Random Tree (RT) and Support Vector Machines (SVM).
-      \item Using massively parallel processing on high-performance computers, we compare the generalization errors at various combinations of levels of several factors: number of genes, training sample size, 
+      \item Using massively parallel processing on high-performance computers, we compare the average accuracy at various combinations of levels of two factors: number of genes, training sample size, 
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Methods}{Model Evaluation}
 %-------------------------------------------------------
-We evaluate and compare of several estimator: \textbf{Hold-out Validation, K-fold Cross Validation (CV), Bootstrap Resampling estimators}.
+We evaluate and compare of several estimator: 
+\begin{itemize}
+    \item Hold-out Validation
+    \item K-fold Cross Validation (CV)
+    \item Bootstrap Resampling
+\end{itemize}
 \begin{figure}
 \centering
-\includegraphics[width=80mm]{pictures/CV.png}
+\includegraphics[width=70mm]{pictures/CV.png}
 \end{figure}
 %https://www.oreilly.com/ideas/evaluating-machine-learning-models/page/4/offline-evaluation-mechanisms-hold-out-validation-cross-validation-and-bootstrapping
 %In N-fold cross validation, the examples are divided into N subsets, and then each subset is successively used as the held-aside test set, while the other (N-1) subsets are pooled to create the training set. The results of all N test-set runs are averaged to find the total accuracy. The typical value for N is 10. 
@@ -124,7 +131,7 @@ We evaluate and compare of several estimator: \textbf{Hold-out Validation, K-fol
 
 \begin{frame}{Methods}{Performance estimators: Accuracy, Precision, Recall}
 %-------------------------------------------------------
-We compare performance of the methods in terms of classification accuracy, precision, and recall.
+We compare performance of the methods in terms of  \textbf{classification accuracy}, \textbf{precision}, and \textbf{recall}.
 \begin{table}[]
 \begin{tabular}{|c|c|c|}
 \hline
@@ -301,7 +308,7 @@ We divide the process into two different steps, the training phase and the predi
       \item Gene expression data was merged with clinical information to ascertain the disease type. 
       \item The data matrix was filtered to remove rows with missing data, such that each row has at least $\geq 30\%$ data.
       %\item We use clinical information to classify samples into two groups: triple negative breast cancer patients, and normal.
-      \item To begin, we select those 200 genes from the 45,000 genes on the gene expression data with the highest degree of association with the disease outcome. (Calculated by gene different expression p-value over the full set of 212 example, We then rank these genes by their p-value.) %They repeat "leave-one-out" cross-validation over all 78 examples using various ensemble sizes. We found that an ensemble size of 70 genes gives the best cross-validated accuracy (83\%). 
+      \item To begin, we select those 200 genes from the 45,000 genes on the gene expression data with the highest degree of association with the disease outcome. (Calculated by gene different expression p-value over the full set of 210 samples, we then rank these genes by their p-value.) %They repeat "leave-one-out" cross-validation over all 78 examples using various ensemble sizes. We found that an ensemble size of 70 genes gives the best cross-validated accuracy (83\%). 
   \end{itemize}
  
 \end{frame}
@@ -370,35 +377,31 @@ We divide the process into two different steps, the training phase and the predi
 \end{subfigure}
 \end{figure}    
 \begin{itemize}
-    \item \footnotesize{Although their performance is improved when the number of genes is increased, the performance improvement is not better when the number of genes exceeds 150.}
+    \item \footnotesize{Although their performance is improved when the number of genes is increased, the performance is not improved much when the number of genes exceeds 150.}
 \end{itemize}
 \end{frame}
 %-------------------------------------------------------
 \section{Conclusions \& Future work}
 %-------------------------------------------------------
 \begin{frame}[allowframebreaks]{Conclusions}
-  The main contributions of this study:
+  \begin{itemize}
+    \item As the feature set gets larger SVM performs better than kNNs, NGB and RT.
+    \item The performance of NGB also increases as the feature set size increases, and exceeds the performance of kNN and RT unless the amount of data is too small.
+    \item RT was found to outperform only NGB in some instances where the data had smaller effect sizes, in which cases it also provided more stable error estimates than NGB.
+    \item The performance is improved when feature set size is increased, But the performance improvement is not very good when the number of genes exceeds 150.
+  \end{itemize}
+\framebreak
+  The main contributions of this work:
 \begin{itemize}
-    \item We performed an extensive study in order to objectively compare classification performance of a number of widely used machine learning in terms of accuracy and specificity for supervised classification   problems.
-    \item k-Nearest Neighbours (kNNs), Naive Gaussian Bayes (NGB), Random Tree (RT) and Support Vector Machines (SVM) are implemented to obtain biologically meaningful genes.
-    \item The main focus of our study was to investigate ``which method performs better in what circumstances'' by comparing performances at various combinations of levels of multiple factors (data characteristics).
+    \item We performed an extensive study in order to objectively compare classification performance of a number of widely used machine learning in terms of accuracy.
+    \item k-Nearest Neighbours (kNNs), Naive Gaussian Bayes (NGB), Random Tree (RT) and Support Vector Machines (SVM) are implemented.
+  \item None of the methods studied (except NGB) require data to follow any particular probability distribution, and the simulation results should be able to resist deviations from the normal hypothesis.
 \end{itemize}
 \framebreak
   \begin{itemize}
-    \item As the feature set gets larger SVM performs better than kNNs, NGB and RT.
-    \item The performance of NGB also improves as the feature set size grows and outplays that of kNNs and RT unless the data sizes are too small.
-    \item RT was found to outperform only NGB in some instances where the data had smaller effect sizes, in which cases it also provided more stable error estimates than NGB.
-    \item The performance is improved when feature set size is increased, But the performance improvement is not better when the number of genes exceeds 150.
-  \end{itemize}
-\framebreak
-  \begin{itemize}
+    \item The main focus of our study was to investigate ``which method performs better in what circumstances'' by comparing performance at various combinations of levels of multiple factors.
     \item A new method for predicting gene selection for breast cancer types was proposed.
-%    \item based on different criteria such as accuracy, F- measure and area under the curve (AUC).
-   \end{itemize}
-  Finally
-  \begin{itemize}
       \item We have discovered a new set of compact genes that can be used to differentiate between breast cancer and normal in a clinical setting.
-  \item None of the methods studied (except NGB) require data to follow any particular probability distribution, and the simulation results should be able to resist deviations from the normal hypothesis.
  \end{itemize}
  \end{frame}
 
@@ -409,7 +412,7 @@ We divide the process into two different steps, the training phase and the predi
         \item It is still valuable to provide this result as a set of general guidelines and as a starting point for algorithms that compare future genetic research tasks.
     \end{itemize}
 \framebreak
-    This achievement is the result of my own experience and research, but I am not an expert in any of these algorithms. If you have a suggestion on how to improve this work, I would love to hear it in the comments.
+    This achievement is the result of my own experience. Please tell me how you can improve this work.
 \begin{itemize}
     \item Are there other "important" criteria for comparison that should be added to this work?
     \item Are there any other algorithms that you would like me to add to this work? 
